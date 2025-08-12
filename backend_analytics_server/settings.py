@@ -129,4 +129,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 
-API_URL = 'https://jsonplaceholder.typicode.com/posts'
+API_URL = 'https://jrsaltos.pythonanywhere.com/landing/api/index/?format=json'
