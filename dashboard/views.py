@@ -11,14 +11,41 @@ def index(request):
     posts = response.json()  # Convertir la respuesta a JSON
     # Número total de respuestas
     total_responses = len(posts)
-    #tal vez hacer for al posts
-    #tal que por reserva en post se buscan los servicios
-    #por servicios en reserva se hacen 3 variables
-    # si existe el servicio en servicios, se le suma 1 a la variable, caso contrario, se siquie nomás
-    # de ahí, devolver eso en data
+
+    total_puentes = 0
+    total_coronas = 0
+    total_protesis = 0
+    
+    total_mañana = 0
+    total_tarde = 0
+
+    
+    for reserva in posts.values():
+        servicios = reserva.get("servicios", [])  # Accede a la lista de servicios
+        if "coronas" in servicios:
+            total_coronas += 1
+        if "protesis" in servicios:
+            total_protesis += 1
+        if "puentes" in servicios:
+            total_puentes += 1
+        horario = reserva.get("horario", "")
+        if horario == "Manana":
+            total_mañana += 1
+        elif horario == "Tarde":
+            total_tarde += 1
+
+    
     data = {
         'title': "Landing Page' Dashboard",
         'total_responses': total_responses,
+        'total_coronas': total_coronas,
+        'total_protesis': total_protesis,
+        'total_puentes': total_puentes,
+        'total_mañana': total_mañana,  
+        'total_tarde': total_tarde, 
+        'horarios_labels': ["Horario Mañana", "Horario Tarde"],
+        'horarios_values': [total_mañana, total_tarde],
+        'posts': posts.values  # para iterar en la tabla
     }
 
 
