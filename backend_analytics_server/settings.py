@@ -139,3 +139,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 API_URL = 'https://jrsaltos.pythonanywhere.com/landing/api/index/?format=json'
+# Fallo: acceso sin autenticación
+LOGIN_URL = '/login/'
+
+# Éxito: luego de autenticación exitosa
+LOGIN_REDIRECT_URL = '/'
