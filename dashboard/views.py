@@ -18,8 +18,15 @@ def index(request):
     total_mañana = 0
     total_tarde = 0
 
+    emails_horarios = []
+
     
     for reserva in posts.values():
+
+        email = reserva.get("email", "Sin email")
+        horario = reserva.get("horario", "Sin horario")
+        emails_horarios.append({"email": email, "horario": horario})
+
         servicios = reserva.get("servicios", [])  # Accede a la lista de servicios
         if "coronas" in servicios:
             total_coronas += 1
@@ -43,7 +50,8 @@ def index(request):
         'total_puentes': total_puentes,
         'total_mañana': total_mañana,  
         'total_tarde': total_tarde, 
-        'horarios_labels': ["Horario Mañana", "Horario Tarde"],
+        'horarios_labels': ["Manana", "Tarde"],
+        'emails_horarios': emails_horarios,  # Lista de emails y horarios
         'horarios_values': [total_mañana, total_tarde],
         'posts': posts
     }

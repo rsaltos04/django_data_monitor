@@ -113,27 +113,27 @@
             <thead>
               <tr
                 class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                <th class="px-4 py-3">Cantidad de reservas en la mañana</th>
-                <th class="px-4 py-3">Cantidad de reservas en la tarde</th>
+                <th class="px-4 py-3">Email de usuarios</th>
+                <th class="px-4 py-3">Horario de reservas(Manana = Mañana/ Tarde)</th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-
+              {% for item in emails_horarios %}
               <!-- START - respuestas -->
               <tr class="text-gray-700 dark:text-gray-400">
                 <td class="px-4 py-3 text-sm">
                   <!-- START - fila.valor1 -->
-                  {{ total_mañana }}
+                  {{ item.email }}
                   <!-- END - fila.valor1 -->
                 </td>
                 <td class="px-4 py-3 text-sm">
                   <!-- START - fila.valor2 -->
-                  {{ total_tarde }}
+                  {{ item.horario }}
                   <!-- END - fila.valor2 -->
                 </td>
               </tr>
               <!-- END - respuestas -->
-
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -141,7 +141,7 @@
           class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
           <span class="flex items-center col-span-3">
             <!-- START - # total de respuestas -->
-            XXX
+            {{ total_responses }}
             <!-- END - # total de respuestas -->
             respuestas
           </span>
@@ -153,9 +153,21 @@
       <div class="row-span-1 grid gap-6 mb-8 md:grid-cols-12">
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
           <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-            Título del gráfico
+             Gráfico de reparaciones
           </h4>
-          <canvas id="line"></canvas>
+
+          <!-- Usar json_script para cada variable -->
+          {{ total_puentes|json_script:"total_puentes" }}
+          {{ total_coronas|json_script:"total_coronas" }}
+          {{ total_protesis|json_script:"total_protesis" }}
+
+          <script>
+            const totalPuentes = JSON.parse(document.getElementById('total_puentes').textContent);
+            const totalCoronas = JSON.parse(document.getElementById('total_coronas').textContent);
+            const totalProtesis = JSON.parse(document.getElementById('total_protesis').textContent);
+          </script>
+
+          <canvas id="pie"></canvas>
         </div>
       </div>
       <!-- END - Gráficos -->
