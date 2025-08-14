@@ -1,12 +1,14 @@
 /**
  * For usage, visit Chart.js docs https://www.chartjs.org/docs/latest/
  */
+
+
 const pieConfig = {
   type: 'doughnut',
   data: {
     datasets: [
       {
-        data: [33, 33, 33],
+        data: [totalPuentes, totalCoronas, totalProtesis],
         /**
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
@@ -15,7 +17,7 @@ const pieConfig = {
         label: 'Dataset 1',
       },
     ],
-    labels: ['Shoes', 'Shirts', 'Bags'],
+    labels: ['Puentes', 'Coronas', 'Prótesis'],
   },
   options: {
     responsive: true,
