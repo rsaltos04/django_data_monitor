@@ -2,13 +2,16 @@
  * For usage, visit Chart.js docs https://www.chartjs.org/docs/latest/
  */
 
+const total_puentes = JSON.parse(document.getElementById('total_puentes').textContent);
+const total_coronas = JSON.parse(document.getElementById('total_coronas').textContent);
+const total_protesis = JSON.parse(document.getElementById('total_protesis').textContent);
 
 const pieConfig = {
   type: 'doughnut',
   data: {
     datasets: [
       {
-        data: [totalPuentes, totalCoronas, totalProtesis],
+        data: [total_puentes, total_coronas, total_protesis],
         /**
          * These colors come from Tailwind CSS palette
          * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
