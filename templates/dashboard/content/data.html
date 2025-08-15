@@ -153,7 +153,7 @@
       <div class="row-span-1 grid gap-6 mb-8 md:grid-cols-12">
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
           <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-             Gráfico de reparaciones
+            Gráfico de reparaciones
           </h4>
 
           <!-- Usar json_script para cada variable -->
@@ -161,11 +161,8 @@
           {{ total_coronas|json_script:"total_coronas" }}
           {{ total_protesis|json_script:"total_protesis" }}
 
-          <script>
-            const totalPuentes = JSON.parse(document.getElementById('total_puentes').textContent);
-            const totalCoronas = JSON.parse(document.getElementById('total_coronas').textContent);
-            const totalProtesis = JSON.parse(document.getElementById('total_protesis').textContent);
-          </script>
+          <!-- Gráfico de pastel -->
+          <script src="{%static '/js/charts-pie.js' %}" defer></script>
 
           <canvas id="pie"></canvas>
         </div>
